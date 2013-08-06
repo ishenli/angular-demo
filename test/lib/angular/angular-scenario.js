@@ -18987,8 +18987,8 @@ function $FilterProvider($provide) {
  *     will be returned. The predicate can be negated by prefixing the string with `!`.
  *
  *   - `Object`: A pattern object can be used to filter specific properties on objects contained
- *     by `array`. For example `{name:"M", phone:"1"}` predicate will return an array of items
- *     which have property `name` containing "M" and property `phone` containing "1". A special
+ *     by `array`. For example `{name:"M", phones:"1"}` predicate will return an array of items
+ *     which have property `name` containing "M" and property `phones` containing "1". A special
  *     property name `$` can be used (as in `{$:"text"}`) to accept a match against any
  *     property of the object. That's equivalent to the simple substring match with a `string`
  *     as described above.
@@ -19000,29 +19000,29 @@ function $FilterProvider($provide) {
  * @example
    <doc:example>
      <doc:source>
-       <div ng-init="friends = [{name:'John', phone:'555-1276'},
-                                {name:'Mary', phone:'800-BIG-MARY'},
-                                {name:'Mike', phone:'555-4321'},
-                                {name:'Adam', phone:'555-5678'},
-                                {name:'Julie', phone:'555-8765'}]"></div>
+       <div ng-init="friends = [{name:'John', phones:'555-1276'},
+                                {name:'Mary', phones:'800-BIG-MARY'},
+                                {name:'Mike', phones:'555-4321'},
+                                {name:'Adam', phones:'555-5678'},
+                                {name:'Julie', phones:'555-8765'}]"></div>
 
        Search: <input ng-model="searchText">
        <table id="searchTextResults">
          <tr><th>Name</th><th>Phone</th></tr>
          <tr ng-repeat="friend in friends | filter:searchText">
            <td>{{friend.name}}</td>
-           <td>{{friend.phone}}</td>
+           <td>{{friend.phones}}</td>
          </tr>
        </table>
        <hr>
        Any: <input ng-model="search.$"> <br>
        Name only <input ng-model="search.name"><br>
-       Phone only <input ng-model="search.phone"å><br>
+       Phone only <input ng-model="search.phones"å><br>
        <table id="searchObjResults">
          <tr><th>Name</th><th>Phone</th></tr>
          <tr ng-repeat="friend in friends | filter:search">
            <td>{{friend.name}}</td>
-           <td>{{friend.phone}}</td>
+           <td>{{friend.phones}}</td>
          </tr>
        </table>
      </doc:source>
@@ -19703,11 +19703,11 @@ function limitToFilter(){
        <script>
          function Ctrl($scope) {
            $scope.friends =
-               [{name:'John', phone:'555-1212', age:10},
-                {name:'Mary', phone:'555-9876', age:19},
-                {name:'Mike', phone:'555-4321', age:21},
-                {name:'Adam', phone:'555-5678', age:35},
-                {name:'Julie', phone:'555-8765', age:29}]
+               [{name:'John', phones:'555-1212', age:10},
+                {name:'Mary', phones:'555-9876', age:19},
+                {name:'Mike', phones:'555-4321', age:21},
+                {name:'Adam', phones:'555-5678', age:35},
+                {name:'Julie', phones:'555-8765', age:29}]
            $scope.predicate = '-age';
          }
        </script>
@@ -19719,12 +19719,12 @@ function limitToFilter(){
            <tr>
              <th><a href="" ng-click="predicate = 'name'; reverse=false">Name</a>
                  (<a href ng-click="predicate = '-name'; reverse=false">^</a>)</th>
-             <th><a href="" ng-click="predicate = 'phone'; reverse=!reverse">Phone Number</a></th>
+             <th><a href="" ng-click="predicate = 'phones'; reverse=!reverse">Phone Number</a></th>
              <th><a href="" ng-click="predicate = 'age'; reverse=!reverse">Age</a></th>
            </tr>
            <tr ng-repeat="friend in friends | orderBy:predicate:reverse">
              <td>{{friend.name}}</td>
-             <td>{{friend.phone}}</td>
+             <td>{{friend.phones}}</td>
              <td>{{friend.age}}</td>
            </tr>
          </table>
@@ -19747,7 +19747,7 @@ function limitToFilter(){
            toEqual(['35', '10', '29', '19', '21']);
 
          element('.doc-example-live a:contains("Phone")').click();
-         expect(repeater('table.friend', 'friend in friends').column('friend.phone')).
+         expect(repeater('table.friend', 'friend in friends').column('friend.phones')).
            toEqual(['555-9876', '555-8765', '555-5678', '555-4321', '555-1212']);
          expect(repeater('table.friend', 'friend in friends').column('friend.name')).
            toEqual(['Mary', 'Julie', 'Adam', 'Mike', 'John']);
@@ -22170,7 +22170,7 @@ var ngCloakDirective = ngDirective({
         function SettingsController($scope) {
           $scope.name = "John Smith";
           $scope.contacts = [
-            {type:'phone', value:'408 555 1212'},
+            {type:'phones', value:'408 555 1212'},
             {type:'email', value:'john.smith@example.org'} ];
 
           $scope.greet = function() {
@@ -22187,7 +22187,7 @@ var ngCloakDirective = ngDirective({
           };
 
           $scope.clearContact = function(contact) {
-           contact.type = 'phone';
+           contact.type = 'phones';
            contact.value = '';
           };
         }
@@ -22199,7 +22199,7 @@ var ngCloakDirective = ngDirective({
         <ul>
           <li ng-repeat="contact in contacts">
             <select ng-model="contact.type">
-               <option>phone</option>
+               <option>phones</option>
                <option>email</option>
             </select>
             <input type="text" ng-model="contact.value"/>

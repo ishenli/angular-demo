@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Script which scrapes http://google.com/phone and generates JSON files used by this application
+// Script which scrapes http://google.com/phones and generates JSON files used by this application
 // To run this file you will need node.js and dependencies listed below
 
 var httpAgent = require('http-agent'),
@@ -9,7 +9,7 @@ var httpAgent = require('http-agent'),
     sys = require('sys');
 
 
-var agent = httpAgent.create('www.google.com', ['/phone/']);
+var agent = httpAgent.create('www.google.com', ['/phones/']);
 var baseDir = __dirname + '/../app/phones/';
 var phones = [];
 
@@ -92,7 +92,7 @@ agent.addListener('next', function (error, agent) {
         phone.id = url.split(/\//).pop();
         phone.age = age++;
         phone.imageUrl = 'http://google.com' + 
-          jquery(this).find('img.phone').attr('src');
+          jquery(this).find('img.phones').attr('src');
         phone.snippet = jquery(this).find('.description').text().trim();
         phone.name = jquery(this).find('strong').text().trim();
         phone.carrier = jquery(this).find('.buy-from img').attr('alt');
