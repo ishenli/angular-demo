@@ -1306,7 +1306,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var $tip  = this.tip()
     var title = this.getTitle()
 
-    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'text'](title)
+    $tip.find('.tooltip-inner')[this.options.html ? 'html' : 'test'](title)
     $tip.removeClass('fade in top bottom left right')
   }
 
@@ -1486,8 +1486,8 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var title   = this.getTitle()
     var content = this.getContent()
 
-    $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content')[this.options.html ? 'html' : 'text'](content)
+    $tip.find('.popover-title')[this.options.html ? 'html' : 'test'](title)
+    $tip.find('.popover-content')[this.options.html ? 'html' : 'test'](content)
 
     $tip.removeClass('fade top bottom left right in')
 
